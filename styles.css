@@ -1,206 +1,208 @@
-/* ================= PASO 1: ESTRUCTURA DEL PROYECTO ================= */
-/* Archivo styles.css separado del HTML para mantener organización */
-
-/* ================= PASO 2: CONFIGURACIÓN BASE + SEO VISUAL ================= */
-
-/* Variables globales (mejor mantenimiento del diseño) */
+/* ================= VARIABLES Y RESET ================= */
 :root {
-  --primary: #22c55e; /* Color principal (verde ciberseguridad) */
-  --secondary: #3b82f6; /* Color secundario */
-  --dark-bg: #020617; /* Fondo principal oscuro */
-  --card-bg: #0f172a; /* Fondo de tarjetas */
-  --text-light: #f8fafc; /* Color del texto */
-  --transition: all 0.3s ease; /* Transiciones suaves */
+    --primary: #22c55e;      /* Verde Neón */
+    --secondary: #3b82f6;    /* Azul Eléctrico */
+    --dark-bg: #020617;      /* Fondo Principal */
+    --card-bg: #0f172a;      /* Fondo Tarjetas */
+    --text-light: #f8fafc;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset CSS (evita estilos por defecto del navegador) */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* PASO 4: Control del Box Model */
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
-/* Estilo general del body */
+html {
+    scroll-behavior: smooth; /* Navegación fluida entre secciones */
+}
+
 body {
-  background-color: var(--dark-bg);
-  color: var(--text-light);
-  line-height: 1.6;
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.6;
 }
 
-/* ================= PASO 3: HEADER CON FLEXBOX ================= */
-
-/* Contenedor principal del header */
+/* ================= HEADER (FLEXBOX) ================= */
 .header {
-  display: flex; /* Activa Flexbox */
-  justify-content: space-between; /* Espacio entre logo y menú */
-  align-items: center; /* Alineación vertical */
-  padding: 1.2rem 8%;
-  background: rgba(2, 6, 23, 0.95);
-  position: sticky; /* Se queda fijo arriba */
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid #1e293b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 8%;
+    background: rgba(2, 6, 23, 0.95);
+    backdrop-filter: blur(10px); /* Efecto de cristal */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #1e293b;
 }
 
-/* Logo */
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: -1px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-/* Parte resaltada del logo */
-.logo span { 
-  color: var(--primary); 
-}
+.logo span { color: var(--primary); }
 
-/* Menú de navegación */
 .nav {
-  display: flex; /* Flexbox para alinear enlaces */
-  align-items: center;
-  gap: 2rem; /* Espacio entre enlaces */
+    display: flex;
+    gap: 2rem;
+    align-items: center;
 }
 
-/* Estilo de enlaces */
-.nav a {
-  color: var(--text-light);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: var(--transition);
+.nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
 }
 
-/* Efecto hover */
-.nav a:hover { 
-  color: var(--primary); 
-}
+.nav-link:hover { color: var(--primary); }
 
-/* Botón del menú */
 .btn-nav {
-  background: var(--primary);
-  color: var(--dark-bg) !important;
-  padding: 0.5rem 1.2rem;
-  border-radius: 5px;
-  font-weight: bold;
+    background: var(--primary);
+    color: var(--dark-bg);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: var(--transition);
 }
 
-/* ================= DISEÑO FLUIDO (HERO) ================= */
+.btn-nav:hover {
+    box-shadow: 0 0 15px var(--primary);
+}
 
-/* Sección principal */
+/* ================= HERO SECTION (DISEÑO FLUIDO) ================= */
 .hero {
-  height: 80vh;
-  display: flex; /* Centrado con Flexbox */
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
-  padding: 0 1rem;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
+    padding: 0 5%;
 }
 
-/* Etiqueta decorativa */
 .badge {
-  color: var(--primary);
-  border: 1px solid var(--primary);
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* Título adaptable (unidad fluida) */
-.hero h2 {
-  font-size: clamp(2rem, 5vw, 4rem); /* Se adapta al tamaño de pantalla */
-  margin: 1.5rem 0;
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem); /* PASO 4: Unidades fluidas */
+    margin: 1.5rem 0;
+    line-height: 1.1;
 }
 
-/* Efecto en texto */
-.hero h2 span {
-  color: transparent;
-  -webkit-text-stroke: 1px var(--primary);
+.hero h1 span {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--primary);
 }
 
-/* ================= PASO 4: GRID Y TARJETAS ================= */
+.hero-btns {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
 
-/* Contenedor principal */
+.btn-primary, .btn-secondary {
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.btn-primary { background: var(--primary); color: var(--dark-bg); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4); }
+
+.btn-secondary { border: 1px solid var(--text-light); color: var(--text-light); }
+.btn-secondary:hover { background: var(--text-light); color: var(--dark-bg); }
+
+/* ================= GRID SYSTEM (PASO 4) ================= */
 .contenedor {
-  padding: 5rem 8%;
+    padding: 5rem 8%;
+    scroll-margin-top: 80px; /* Evita que el header tape el título al navegar */
 }
 
-/* Título de sección */
 .titulo {
-  font-size: 2rem;
-  margin-bottom: 3rem;
-  border-left: 5px solid var(--primary);
-  padding-left: 1rem;
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    text-align: center;
 }
 
-/* Sistema Grid */
 .grid {
-  display: grid;
-
-  /* Grid fluido solicitado en la guía */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
-  gap: 2rem;
+    display: grid;
+    /* Grid Responsivo automático sin Media Queries */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
 }
 
-/* Tarjetas */
 .card {
-  background: var(--card-bg);
-  padding: 2.5rem;
-  border-radius: 15px;
-  border: 1px solid #1e293b;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid #1e293b;
+    transition: var(--transition);
 }
 
-/* Efecto hover */
 .card:hover {
-  transform: translateY(-10px);
-  border-color: var(--primary);
-  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.1);
+    transform: translateY(-10px);
+    border-color: var(--primary);
 }
 
-/* Tarjeta destacada */
 .featured {
-  border: 1px solid var(--secondary);
+    border-color: var(--secondary);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
 }
 
-/* Icono */
-.card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  display: block;
+.card-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+
+/* ================= SECCIÓN CERTIFICACIÓN ================= */
+.section-alt { background: #010409; }
+.cert-box {
+    background: linear-gradient(45deg, #0f172a, #1e293b);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px border var(--secondary);
 }
 
 /* ================= FOOTER ================= */
-
 .footer {
-  padding: 3rem;
-  background: #010409;
-  text-align: center;
-  border-top: 1px solid #1e293b;
-  color: #64748b;
+    padding: 4rem 5%;
+    background: #000;
+    text-align: center;
+    border-top: 1px solid #1e293b;
 }
 
-/* ================= PASO 5: DISEÑO RESPONSIVO ================= */
+.footer p { color: #64748b; margin-bottom: 0.5rem; }
 
-/* Media Query para móviles */
+/* ================= PASO 5: MEDIA QUERIES (RESPONSIVO) ================= */
 @media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
 
-  /* Oculta menú (en producción se usaría menú hamburguesa) */
-  .nav { 
-    display: none; 
-  }
+    .nav {
+        margin-top: 1.5rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-  /* Reduce altura del hero */
-  .hero { 
-    height: 60vh; 
-  }
-
-  /* Reduce separación en grid */
-  .grid { 
-    gap: 1rem; 
-  }
+    .hero { height: auto; padding: 10rem 5%; }
+    
+    .hero-btns { flex-direction: column; }
 }
